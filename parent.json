@@ -1,0 +1,32 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+
+    "parameters": {
+    },
+
+    "variables": {},
+
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "name": "linkedTemplate",
+            "properties": {
+              "mode": "Incremental",
+              "templateLink": {
+                "uri": "https://usmanstorage12.blob.core.windows.net/usmancontainer/automating.json",
+                "contentVersion": "1.0.0.0"
+              }
+            }
+          }
+    ],
+
+        "outputs":{
+        "principalId": {
+          "type": "string",
+          "value": "[reference('linkedTemplate').outputs.principalId.value]"
+        }
+      }
+    
+}
